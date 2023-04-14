@@ -82,9 +82,25 @@
 		<h1>Select Features to be Extracted</h1>
 		<p>Select the features you want to extract from the uploaded images:</p>
 		<form action="#" method="POST">
-			<label><input type="checkbox" name="features[]" value="color"> Color</label>
-			<label><input type="checkbox" name="features[]" value="texture"> Texture</label>
-			<label><input type="checkbox" name="features[]" value="shape"> Shape</label>
+<label><input type="checkbox" name="features[]" value="mean"> Mean</label>
+<label><input type="checkbox" name="features[]" value="std_dev"> Standard Deviation</label>
+<label><input type="checkbox" name="features[]" value="variance"> Variance</label>
+<label><input type="checkbox" name="features[]" value="min_intensity"> Minimum Intensity</label>
+<label><input type="checkbox" name="features[]" value="max_intensity"> Maximum Intensity</label>
+<label><input type="checkbox" name="features[]" value="aspect_ratio"> Aspect Ratio</label>
+<label><input type="checkbox" name="features[]" value="area"> Area</label>
+<label><input type="checkbox" name="features[]" value="perimeter"> Perimeter</label>
+<label><input type="checkbox" name="features[]" value="edge_density"> Edge Density</label>
+<label><input type="checkbox" name="features[]" value="contrast"> Contrast</label>
+<label><input type="checkbox" name="features[]" value="correlation"> Correlation</label>
+<label><input type="checkbox" name="features[]" value="energy"> Energy</label>
+<label><input type="checkbox" name="features[]" value="homogeneity"> Homogeneity</label>
+<label><input type="checkbox" name="features[]" value="x_center"> X Center</label>
+<label><input type="checkbox" name="features[]" value="y_center"> Y Center</label>
+<label><input type="checkbox" name="features[]" value="x_std"> X Standard Deviation</label>
+<label><input type="checkbox" name="features[]" value="y_std"> Y Standard Deviation</label>
+<label><input type="checkbox" name="features[]" value="x_range"> X Range</label>
+<label><input type="checkbox" name="features[]" value="y_range"> Y Range</label>
 			<button type="submit">Extract Features</button>
 		</form>
 	</div>
