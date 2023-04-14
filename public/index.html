@@ -1,43 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<html>
+<head>
+	<title>Image Feature Extractor</title>
+	<style>
+		body {
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+		.container {
+			margin: 50px auto;
+			max-width: 800px;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+			border-radius: 5px;
+			text-align: center;
+		}
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+		h1 {
+			font-size: 36px;
+			margin-top: 0;
+			color: #333;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+		}
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+		p {
+			font-size: 20px;
+			line-height: 1.5;
+			color: #666;
+			margin-bottom: 20px;
+		}
+
+		button {
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			background-color: #333;
+			color: #fff;
+			font-size: 20px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+
+		button:hover {
+			background-color: #666;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Image Feature Extractor</h1>
+		<p>Extract the features you need from your images with ease!</p>
+		<a href="./upload.html"><button>Get Started</button></a>
+	</div>
+</body>
 </html>
