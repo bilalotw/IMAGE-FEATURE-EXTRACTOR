@@ -30,11 +30,11 @@ def extract_features(data_url, req=["mean"]):
 
     if "min_intensity" in req:
         min_intensity = np.min(gray)
-        features["min_intensity"] = min_intensity
+        features["min_intensity"] = str(min_intensity)
 
     if "max_intensity" in req:
         max_intensity = np.max(gray)
-        features["max_intensity"] = max_intensity
+        features["max_intensity"] = str(max_intensity)
 
     width, height = img.size
 
@@ -102,9 +102,8 @@ def extract_features(data_url, req=["mean"]):
         features["y_std"] = y_std
 
     if "x_range" in req:
-        features["x_range"] = x_range
+        features["x_range"] = str(x_range)
 
     if "y_range" in req:
-        features["y_range"] = y_range
-
+        features["y_range"] = str(y_range)
     return features

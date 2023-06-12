@@ -34,7 +34,7 @@ def main():
             filename = x["filename"]
             features = dat[i].result()
             response.append({"filename": filename, "features": features})
-
+    print(response)
     return jsonify(response)
 
 
