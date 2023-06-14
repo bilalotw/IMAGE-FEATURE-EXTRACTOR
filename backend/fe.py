@@ -5,7 +5,8 @@ from skimage import feature
 from skimage.feature import graycomatrix, graycoprops
 from io import BytesIO
 import base64
-
+from skimage.io import imread
+from skimage import img_as_ubyte
 
 def extract_features(data_url, req=["mean"]):
     image_data = base64.b64decode(data_url.split(",")[1])
@@ -41,9 +42,10 @@ def extract_features(data_url, req=["mean"]):
     if "aspect_ratio" in req:
         aspect_ratio = width / height
         features["aspect_ratio"] = aspect_ratio
-
-    area = width * height
-    features["area"] = area
+        
+    if "area" in req:
+        area = width * height
+        features["area"] = area
 
     bbox = img.getbbox()
 
@@ -65,6 +67,7 @@ def extract_features(data_url, req=["mean"]):
     glcm = graycomatrix(gray_array, [5], [0],
                         levels=256, symmetric=True, normed=True)
 
+
     if "contrast" in req:
         contrast = graycoprops(glcm, "contrast")[0, 0]
         features["contrast"] = contrast
@@ -80,6 +83,23 @@ def extract_features(data_url, req=["mean"]):
     if "homogeneity" in req:
         homogeneity = graycoprops(glcm, "homogeneity")[0, 0]
         features["homogeneity"] = homogeneity
+
+    if "dissimilarity" in req:
+        dissimilarity = graycoprops(glcm, "dissimilarity")[0,0]
+        features["dissimilarity"] = dissimilarity
+
+
+
+    if "entropy" in req:        
+        image = np.array(img).astype(float) / np.max(img)
+        image = img_as_ubyte(image)
+        histogram, _ = np.histogram(image.flatten(), bins=256, range=[0, 256])
+        histogram = histogram / float(image.size)
+        histogram = histogram[histogram > 0]
+        entropy = -np.sum(histogram * np.log2(histogram))
+        features["entropy"] = entropy
+
+
 
     x, y = np.meshgrid(np.arange(width), np.arange(height))
     x_center = np.mean(x[gray_array > 0])

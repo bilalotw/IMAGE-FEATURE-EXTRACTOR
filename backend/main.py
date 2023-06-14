@@ -46,7 +46,7 @@ def all_extractable():
         "max_intensity", "mean", "min_intensity",
         "perimeter", "std_dev", "variance", "x_center",
         "x_range", "x_std", "y_center", "y_range",
-        "y_std"
+        "y_std","area", "dissimilarity", "entropy"
     ]
     all_features.sort()
     print(all_features)
