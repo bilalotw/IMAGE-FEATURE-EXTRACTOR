@@ -7,6 +7,9 @@ from io import BytesIO
 import base64
 from skimage.io import imread
 from skimage import img_as_ubyte
+import scipy.stats as stats
+
+
 
 def extract_features(data_url, req=["mean"]):
     image_data = base64.b64decode(data_url.split(",")[1])
@@ -17,9 +20,15 @@ def extract_features(data_url, req=["mean"]):
 
     features = {}
 
+    
     if "mean" in req:
         mean = np.mean(gray)
         features["mean"] = mean
+    if "skewness" in req:
+         flattened_array = gray_array.flatten()
+         skewness = stats.skew(flattened_array)
+         features["skewness"] = skewness
+
 
     if "std_dev" in req:
         std_dev = np.std(gray)
