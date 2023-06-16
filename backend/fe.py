@@ -19,8 +19,8 @@ def extract_features(data_url, req=["mean"]):
         gray_array = np.array(gray)
 
     features = {}
-
-    
+    width, height = img.size
+    area = width * height
     if "mean" in req:
         mean = np.mean(gray)
         features["mean"] = mean
@@ -46,14 +46,13 @@ def extract_features(data_url, req=["mean"]):
         max_intensity = np.max(gray)
         features["max_intensity"] = str(max_intensity)
 
-    width, height = img.size
-
+    
     if "aspect_ratio" in req:
         aspect_ratio = width / height
         features["aspect_ratio"] = aspect_ratio
         
     if "area" in req:
-        area = width * height
+        
         features["area"] = area
 
     bbox = img.getbbox()
