@@ -1,0 +1,6 @@
+Flask==2.3.2
+flask_cors==3.0.10
+numpy==1.25.0
+Pillow==9.5.0
+scipy==1.10.1
+scikit-image==0.21.0

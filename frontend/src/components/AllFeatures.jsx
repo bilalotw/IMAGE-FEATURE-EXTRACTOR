@@ -44,10 +44,21 @@ export default function AllFeatures({ api_url, extract, setExtract }) {
 
   return (
     <div className="h-full w-full">
-        
+      <div className="p-3">
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+          onClick={handleSelectAll}
+        >
+          Select All
+        </button>
+        <button
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+          onClick={handleDeselectAll}
+        >
+          Deselect All
+        </button>
+      </div>
 
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={handleSelectAll}>Select All</button>
-      <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" onClick={handleDeselectAll}>Deselect All</button>
       {loading ? (
         <div>Loading...</div>
       ) : (

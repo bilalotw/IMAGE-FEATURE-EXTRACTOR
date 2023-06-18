@@ -5,14 +5,17 @@ from fe import extract_features
 import concurrent.futures
 
 app = Flask(__name__)
-CORS(app)  # add this line to enable CORS
+app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 * 1024 * 5  # 5GB limit
+CORS(app)
 
+from waitress import serve
 
 @app.route("/", methods=['POST'])
 def main():
-    body = request.data.decode('utf-8')
+    body = request.form.get("0")
     b_json = json.loads(body)
     files = b_json["files"]
+    print("Processing received files...")
 
     if "extract" not in b_json or b_json["extract"] is None:
         extract = []
@@ -21,7 +24,7 @@ def main():
 
     response = []
 
-    with concurrent.futures.ThreadPoolExecutor() as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5000) as executor:
         dat = []
         for x in files:
             dat.append(
@@ -40,6 +43,7 @@ def main():
 
 @app.route("/extractable", methods=['GET'])
 def all_extractable():
+    print("Requested all features!")
     all_features = [
         "aspect_ratio", "contrast", "correlation",
         "edge_density", "energy", "homogeneity",
@@ -49,7 +53,6 @@ def all_extractable():
         "y_std","area", "dissimilarity", "entropy","skewness"
     ]
     all_features.sort()
-    print(all_features)
     return jsonify(all_features)
 
 

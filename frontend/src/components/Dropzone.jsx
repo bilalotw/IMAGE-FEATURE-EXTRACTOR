@@ -5,13 +5,12 @@ import get_data_url from "../function/get_data_url"
 
 export default function Dropzone({ setFiles }) {
 
-    const onDrop = useCallback(async acceptedFiles => {
-        var af = [], i
-        for (i = 0; i < acceptedFiles.length; i++) {
-            af[i] = await get_data_url(acceptedFiles[i])
-        }
-        setFiles(af)
-    }, [])
+    const onDrop = useCallback(async (acceptedFiles) => {      
+        const filePromises = acceptedFiles.map((file) => get_data_url(file));
+        const af = await Promise.all(filePromises);
+        
+        setFiles(af);
+      }, []);
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,

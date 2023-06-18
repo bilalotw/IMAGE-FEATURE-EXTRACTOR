@@ -8,10 +8,11 @@ import base64
 from skimage.io import imread
 from skimage import img_as_ubyte
 import scipy.stats as stats
-
+import time
 
 
 def extract_features(data_url, req=["mean"]):
+    start_time = time.time()
     image_data = base64.b64decode(data_url.split(",")[1])
 
     with Image.open(BytesIO(image_data)) as img:
@@ -52,7 +53,6 @@ def extract_features(data_url, req=["mean"]):
         features["aspect_ratio"] = aspect_ratio
         
     if "area" in req:
-        
         features["area"] = area
 
     bbox = img.getbbox()
@@ -74,7 +74,6 @@ def extract_features(data_url, req=["mean"]):
 
     glcm = graycomatrix(gray_array, [5], [0],
                         levels=256, symmetric=True, normed=True)
-
 
     if "contrast" in req:
         contrast = graycoprops(glcm, "contrast")[0, 0]
@@ -134,4 +133,8 @@ def extract_features(data_url, req=["mean"]):
 
     if "y_range" in req:
         features["y_range"] = str(y_range)
+
+    end_time = time.time()
+    seconds_difference = end_time - start_time
+    print(f"Processed an Image in {seconds_difference}...")
     return features
